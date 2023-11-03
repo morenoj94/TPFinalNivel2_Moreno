@@ -9,9 +9,13 @@ namespace Business
 {
     public class DataAccess
     {        
-        SqlConnection conection;
-        SqlCommand command;
-        SqlDataReader reader;
+        private SqlConnection conection;
+        private SqlCommand command;
+        private SqlDataReader reader;
+        public SqlDataReader Reader 
+        {
+            get { return reader; }
+        }
         public DataAccess()
         {
             //se instancia la coneccion y el comando 
