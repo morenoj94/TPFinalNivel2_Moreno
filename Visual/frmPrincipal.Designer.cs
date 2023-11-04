@@ -37,6 +37,8 @@
             this.txtFiltroAvanzado = new System.Windows.Forms.TextBox();
             this.lblTituloFiltro = new System.Windows.Forms.Label();
             this.btnFiltro = new System.Windows.Forms.Button();
+            this.txtFiltroRapido = new System.Windows.Forms.TextBox();
+            this.lblFiltroRapido = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticle)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +66,7 @@
             // cbCategoria
             // 
             this.cbCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(976, 99);
             this.cbCategoria.Name = "cbCategoria";
@@ -73,6 +76,7 @@
             // cbModo
             // 
             this.cbModo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbModo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbModo.FormattingEnabled = true;
             this.cbModo.Location = new System.Drawing.Point(976, 143);
             this.cbModo.Name = "cbModo";
@@ -125,11 +129,30 @@
             this.btnFiltro.Text = "Filtro Avanzado";
             this.btnFiltro.UseVisualStyleBackColor = true;
             // 
+            // txtFiltroRapido
+            // 
+            this.txtFiltroRapido.Location = new System.Drawing.Point(37, 43);
+            this.txtFiltroRapido.Name = "txtFiltroRapido";
+            this.txtFiltroRapido.Size = new System.Drawing.Size(166, 22);
+            this.txtFiltroRapido.TabIndex = 9;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
+            // 
+            // lblFiltroRapido
+            // 
+            this.lblFiltroRapido.AutoSize = true;
+            this.lblFiltroRapido.Location = new System.Drawing.Point(226, 46);
+            this.lblFiltroRapido.Name = "lblFiltroRapido";
+            this.lblFiltroRapido.Size = new System.Drawing.Size(84, 16);
+            this.lblFiltroRapido.TabIndex = 10;
+            this.lblFiltroRapido.Text = "Filtro Rapido";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1102, 541);
+            this.ClientSize = new System.Drawing.Size(1102, 442);
+            this.Controls.Add(this.lblFiltroRapido);
+            this.Controls.Add(this.txtFiltroRapido);
             this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.lblTituloFiltro);
             this.Controls.Add(this.txtFiltroAvanzado);
@@ -163,6 +186,8 @@
         private System.Windows.Forms.TextBox txtFiltroAvanzado;
         private System.Windows.Forms.Label lblTituloFiltro;
         private System.Windows.Forms.Button btnFiltro;
+        private System.Windows.Forms.TextBox txtFiltroRapido;
+        private System.Windows.Forms.Label lblFiltroRapido;
     }
 }
 

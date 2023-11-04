@@ -45,5 +45,23 @@ namespace Visual
         {
             load();
         }
+
+        private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Article> filteredList;
+            string filter = txtFiltroRapido.Text;
+            if (txtFiltroRapido.TextLength > 1)
+            {
+                //la lista filtrada busca por nombre, codigo, marca o categoria
+                filteredList = articlesList.FindAll(x => x.Name.ToLower().Contains(filter.ToLower()) || x.Code.ToLower().Contains(filter.ToLower()) || x.articleBrand.Description.ToLower().Contains(filter.ToLower()) || x.articleCategory.Description.ToLower().Contains(filter.ToLower()));
+            }
+            else
+            {
+                filteredList = articlesList;
+            }
+            dgvArticle.DataSource = null;
+            dgvArticle.DataSource = filteredList;
+            hideColums();
+        }
     }
 }
