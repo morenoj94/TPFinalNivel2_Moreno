@@ -43,7 +43,7 @@ namespace Business
 
                 throw ex;
             }
-        }
+        }        
         public void closeConnection() 
         {            
             if (reader != null) 
@@ -52,10 +52,6 @@ namespace Business
             }            
             conection?.Close(); //el operador ? sirve para consultar si conection!=null es otra forma de escribir el if de arriba
         }
-
-
-
-
 
     }
 }

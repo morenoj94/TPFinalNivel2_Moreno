@@ -17,6 +17,8 @@ namespace Domain
 
         [DisplayName("Nombre")]
         public string Name { get; set; }
+        [DisplayName("Descripcion")]
+        public string Desciption { get; set; }
 
         [DisplayName("Marca")]
         public Brand articleBrand { get; set; }

@@ -44,6 +44,10 @@ namespace Visual
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             load();
+            cbElemento.Items.Add("Nombre");
+            cbElemento.Items.Add("Categoria");
+            cbElemento.Items.Add("Marca");
+            cbElemento.Items.Add("Precio");
         }
 
         private void txtFiltroRapido_TextChanged(object sender, EventArgs e)
@@ -62,6 +66,42 @@ namespace Visual
             dgvArticle.DataSource = null;
             dgvArticle.DataSource = filteredList;
             hideColums();
+        }
+
+        private void cbElemento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbElemento.SelectedItem.ToString() == "Precio")
+            {
+                cbTipo.Items.Clear();
+                cbTipo.Items.Add("Mayor que");
+                cbTipo.Items.Add("Igual a");
+                cbTipo.Items.Add("Menor que");
+            }
+            else
+            {
+                cbTipo.Items.Clear();
+                cbTipo.Items.Add("Que inicie con");
+                cbTipo.Items.Add("Que termine con");
+                cbTipo.Items.Add("Que contenga");
+            }
+        }
+
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            BusinessArticle business = new BusinessArticle();
+            string elemento, tipo, filtro;
+            try
+            {
+                elemento = cbElemento.SelectedItem.ToString();
+                tipo = cbTipo.SelectedItem.ToString();
+                filtro = txtFiltroAvanzado.Text;
+                dgvArticle.DataSource = business.filter(elemento, tipo, filtro);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

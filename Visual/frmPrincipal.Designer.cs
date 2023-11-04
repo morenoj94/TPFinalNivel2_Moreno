@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvArticle = new System.Windows.Forms.DataGridView();
-            this.lblCategoria = new System.Windows.Forms.Label();
-            this.cbCategoria = new System.Windows.Forms.ComboBox();
-            this.cbModo = new System.Windows.Forms.ComboBox();
-            this.lblModo = new System.Windows.Forms.Label();
+            this.lblElemento = new System.Windows.Forms.Label();
+            this.cbElemento = new System.Windows.Forms.ComboBox();
+            this.cbTipo = new System.Windows.Forms.ComboBox();
+            this.lblTipo = new System.Windows.Forms.Label();
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltroAvanzado = new System.Windows.Forms.TextBox();
             this.lblTituloFiltro = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@
             // 
             this.dgvArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticle.Location = new System.Drawing.Point(37, 86);
             this.dgvArticle.Name = "dgvArticle";
             this.dgvArticle.RowHeadersWidth = 51;
@@ -53,45 +54,46 @@
             this.dgvArticle.Size = new System.Drawing.Size(737, 219);
             this.dgvArticle.TabIndex = 0;
             // 
-            // lblCategoria
+            // lblElemento
             // 
-            this.lblCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(889, 103);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(66, 16);
-            this.lblCategoria.TabIndex = 1;
-            this.lblCategoria.Text = "Categoria";
+            this.lblElemento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblElemento.AutoSize = true;
+            this.lblElemento.Location = new System.Drawing.Point(889, 103);
+            this.lblElemento.Name = "lblElemento";
+            this.lblElemento.Size = new System.Drawing.Size(64, 16);
+            this.lblElemento.TabIndex = 1;
+            this.lblElemento.Text = "Elemento";
             // 
-            // cbCategoria
+            // cbElemento
             // 
-            this.cbCategoria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(976, 99);
-            this.cbCategoria.Name = "cbCategoria";
-            this.cbCategoria.Size = new System.Drawing.Size(114, 24);
-            this.cbCategoria.TabIndex = 2;
+            this.cbElemento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbElemento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbElemento.FormattingEnabled = true;
+            this.cbElemento.Location = new System.Drawing.Point(976, 99);
+            this.cbElemento.Name = "cbElemento";
+            this.cbElemento.Size = new System.Drawing.Size(114, 24);
+            this.cbElemento.TabIndex = 2;
+            this.cbElemento.SelectedIndexChanged += new System.EventHandler(this.cbElemento_SelectedIndexChanged);
             // 
-            // cbModo
+            // cbTipo
             // 
-            this.cbModo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbModo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbModo.FormattingEnabled = true;
-            this.cbModo.Location = new System.Drawing.Point(976, 143);
-            this.cbModo.Name = "cbModo";
-            this.cbModo.Size = new System.Drawing.Size(114, 24);
-            this.cbModo.TabIndex = 4;
+            this.cbTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipo.FormattingEnabled = true;
+            this.cbTipo.Location = new System.Drawing.Point(976, 143);
+            this.cbTipo.Name = "cbTipo";
+            this.cbTipo.Size = new System.Drawing.Size(114, 24);
+            this.cbTipo.TabIndex = 4;
             // 
-            // lblModo
+            // lblTipo
             // 
-            this.lblModo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblModo.AutoSize = true;
-            this.lblModo.Location = new System.Drawing.Point(830, 146);
-            this.lblModo.Name = "lblModo";
-            this.lblModo.Size = new System.Drawing.Size(125, 16);
-            this.lblModo.TabIndex = 3;
-            this.lblModo.Text = "Modo de busqueda";
+            this.lblTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTipo.AutoSize = true;
+            this.lblTipo.Location = new System.Drawing.Point(830, 146);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(118, 16);
+            this.lblTipo.TabIndex = 3;
+            this.lblTipo.Text = "Tipo de busqueda";
             // 
             // lblFiltro
             // 
@@ -128,6 +130,7 @@
             this.btnFiltro.TabIndex = 8;
             this.btnFiltro.Text = "Filtro Avanzado";
             this.btnFiltro.UseVisualStyleBackColor = true;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
             // 
             // txtFiltroRapido
             // 
@@ -157,10 +160,10 @@
             this.Controls.Add(this.lblTituloFiltro);
             this.Controls.Add(this.txtFiltroAvanzado);
             this.Controls.Add(this.lblFiltro);
-            this.Controls.Add(this.cbModo);
-            this.Controls.Add(this.lblModo);
-            this.Controls.Add(this.cbCategoria);
-            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.cbTipo);
+            this.Controls.Add(this.lblTipo);
+            this.Controls.Add(this.cbElemento);
+            this.Controls.Add(this.lblElemento);
             this.Controls.Add(this.dgvArticle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -178,10 +181,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvArticle;
-        private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.ComboBox cbCategoria;
-        private System.Windows.Forms.ComboBox cbModo;
-        private System.Windows.Forms.Label lblModo;
+        private System.Windows.Forms.Label lblElemento;
+        private System.Windows.Forms.ComboBox cbElemento;
+        private System.Windows.Forms.ComboBox cbTipo;
+        private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltroAvanzado;
         private System.Windows.Forms.Label lblTituloFiltro;
