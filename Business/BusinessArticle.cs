@@ -10,6 +10,39 @@ namespace Business
 {
     public class BusinessArticle
     {
+        public void addArticle(Article article)
+        {
+            throw new NotImplementedException();
+        }
+        public void modifyArticle(Article article)
+        {
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setQuery("update ARTICULOS set Codigo = @Code, Nombre = @Name, Descripcion = @Description, IdMarca = @IdBrand, IdCategoria = @IdCategory, ImagenUrl = @ImageUrl, Precio = @Price where Id = @Id");
+                data.setParameters("@Code", article.Code);
+                data.setParameters("@Name", article.Name);
+                data.setParameters("@Description", article.Desciption);
+                data.setParameters("@IdBrand", article.articleBrand.Id);
+                data.setParameters("@IdCategory", article.articleCategory.Id);
+                data.setParameters("@ImageUrl", article.imageUrl);
+                data.setParameters("@Price", article.Price);
+                data.setParameters("@Id", article.Id);
+
+                data.executeAction();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            {
+                data.closeConnection();
+            }
+        }
+
         public List<Article> filter(string elemento, string tipo, string filtro)
         {
             List<Article> articleList = new List<Article>();
@@ -91,7 +124,7 @@ namespace Business
         public List<Article> listar() 
         {
             List<Article> articleList;
-            articleList = mappingArticle("select A.Id as id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion As Marca, C.Descripcion as Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria");
+            articleList = mappingArticle("select A.Id as id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion As Marca, C.Descripcion as Categoria, Precio, M.Id as MId, C.Id as CId from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria\r\n");
 
             return articleList;
         }
@@ -111,8 +144,10 @@ namespace Business
                     articleAux.Name = (string)data.Reader["Nombre"];
                     articleAux.Desciption = (string)data.Reader["Descripcion"];
                     articleAux.articleBrand = new Brand();
+                    articleAux.articleBrand.Id = (int)data.Reader["MId"];
                     articleAux.articleBrand.Description = (string)data.Reader["Marca"];
                     articleAux.articleCategory = new Category();
+                    articleAux.articleCategory.Id = (int)data.Reader["CId"];
                     articleAux.articleCategory.Description = (string)data.Reader["Categoria"];
                     articleAux.Price = (decimal)data.Reader["Precio"];
 

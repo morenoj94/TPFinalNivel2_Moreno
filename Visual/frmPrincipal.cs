@@ -38,7 +38,7 @@ namespace Visual
         private void hideColums()
         {
             dgvArticle.Columns["id"].Visible = false;
-            dgvArticle.Columns["urlImagen"].Visible = false;
+            dgvArticle.Columns["imageUrl"].Visible = false;
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -102,6 +102,27 @@ namespace Visual
 
                 throw;
             }
+        }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Article selected;
+            selected = (Article)dgvArticle.CurrentRow.DataBoundItem;
+            Detail articleDetail = new Detail(selected);
+            articleDetail.ShowDialog();
+            load();
+            hideColums();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Detail addArticle = new Detail();
+            addArticle.ShowDialog();
+        }
+
+        private void btnModifcar_Click(object sender, EventArgs e)
+        {
+            btnDetalle_Click(sender, e);
         }
     }
 }

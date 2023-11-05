@@ -25,7 +25,7 @@ namespace Domain
 
         [DisplayName("Categoria")]
         public Category articleCategory { get; set; }
-        public string urlImagen { get; set; }
+        public string imageUrl { get; set; }
 
         [DisplayName("Precio")]
         public decimal Price { get; set; }
