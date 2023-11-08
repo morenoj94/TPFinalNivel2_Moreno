@@ -10,10 +10,32 @@ namespace Business
 {
     public class BusinessArticle
     {
+        public List<Article> listar() 
+        {
+            List<Article> articleList;
+            articleList = mappingArticle("select A.Id as id, Codigo, Nombre, A.Descripcion as Descripcion, ImagenUrl, M.Descripcion As Marca, C.Descripcion as Categoria, Precio, M.Id as MId, C.Id as CId from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria");
+
+            return articleList;
+        }
+
         public void addArticle(Article article)
         {
-            throw new NotImplementedException();
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setQuery($"insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values ('{article.Code}', '{article.Name}', '{article.Desciption}', {article.articleBrand.Id}, {article.articleCategory.Id}, '{article.imageUrl}', {article.Price})");
+                data.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            {
+                data.closeConnection();
+            }
         }
+
         public void modifyArticle(Article article)
         {
             DataAccess data = new DataAccess();
@@ -40,6 +62,25 @@ namespace Business
             finally 
             {
                 data.closeConnection();
+            }
+        }
+
+        public void eliminar(Article seleted)
+        {
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setQuery($"delete from ARTICULOS where id = {seleted.Id}");
+                data.executeAction();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally 
+            {
+                data.closeConnection(); 
             }
         }
 
@@ -108,7 +149,7 @@ namespace Business
                         }
                         break;                        
                 }
-                consulta = $"select A.Id, Codigo, Nombre, A.Descripcion, M.Descripcion As Marca, C.Descripcion as Categoria, Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria and {condicion}";
+                consulta = $"select A.Id as id, Codigo, Nombre, A.Descripcion as Descripcion, ImagenUrl, M.Descripcion As Marca, C.Descripcion as Categoria, Precio, M.Id as MId, C.Id as CId from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria and {condicion}";
                 articleList = mappingArticle(consulta);
 
             }
@@ -121,13 +162,6 @@ namespace Business
             return articleList;
         }
 
-        public List<Article> listar() 
-        {
-            List<Article> articleList;
-            articleList = mappingArticle("select A.Id as id, Codigo, Nombre, A.Descripcion as Descripcion, M.Descripcion As Marca, C.Descripcion as Categoria, Precio, M.Id as MId, C.Id as CId from ARTICULOS A, MARCAS M, CATEGORIAS C where M.Id = A.IdMarca and C.Id = A.IdCategoria\r\n");
-
-            return articleList;
-        }
         public List<Article> mappingArticle(string consulta) 
         {
             List<Article> articleList = new List<Article>();
@@ -143,6 +177,7 @@ namespace Business
                     articleAux.Code = (string)data.Reader["Codigo"];
                     articleAux.Name = (string)data.Reader["Nombre"];
                     articleAux.Desciption = (string)data.Reader["Descripcion"];
+                    articleAux.imageUrl = (string)data.Reader["ImagenUrl"];
                     articleAux.articleBrand = new Brand();
                     articleAux.articleBrand.Id = (int)data.Reader["MId"];
                     articleAux.articleBrand.Description = (string)data.Reader["Marca"];
@@ -168,6 +203,5 @@ namespace Business
 
             return articleList;
         }
-
     }
 }

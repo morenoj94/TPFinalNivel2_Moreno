@@ -31,12 +31,13 @@ namespace Visual
 
                 MessageBox.Show(ex.ToString());
             }
-            dgvArticle.DataSource = articlesList;
+            dgvArticle.DataSource = articlesList; 
             hideColums();
         }
 
         private void hideColums()
         {
+            
             dgvArticle.Columns["id"].Visible = false;
             dgvArticle.Columns["imageUrl"].Visible = false;
         }
@@ -76,6 +77,7 @@ namespace Visual
                 cbTipo.Items.Add("Mayor que");
                 cbTipo.Items.Add("Igual a");
                 cbTipo.Items.Add("Menor que");
+                cbTipo.SelectedIndex = 1;
             }
             else
             {
@@ -83,6 +85,7 @@ namespace Visual
                 cbTipo.Items.Add("Que inicie con");
                 cbTipo.Items.Add("Que termine con");
                 cbTipo.Items.Add("Que contenga");
+                cbTipo.SelectedIndex = 2;
             }
         }
 
@@ -92,6 +95,10 @@ namespace Visual
             string elemento, tipo, filtro;
             try
             {
+                if (validateFilter())
+                {
+                    return;
+                }
                 elemento = cbElemento.SelectedItem.ToString();
                 tipo = cbTipo.SelectedItem.ToString();
                 filtro = txtFiltroAvanzado.Text;
@@ -111,18 +118,75 @@ namespace Visual
             Detail articleDetail = new Detail(selected);
             articleDetail.ShowDialog();
             load();
-            hideColums();
+            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Detail addArticle = new Detail();
             addArticle.ShowDialog();
+            load();
+            hideColums();
         }
 
         private void btnModifcar_Click(object sender, EventArgs e)
         {
             btnDetalle_Click(sender, e);
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            BusinessArticle business = new BusinessArticle();
+            Article seleted;
+            seleted = (Article)dgvArticle.CurrentRow.DataBoundItem;
+            DialogResult resultado = MessageBox.Show("¿Seguro que quieres borrar este elemento? \n    Al borrarlo ya no podras acceder a el", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.Yes)
+            {
+                business.eliminar(seleted);
+                MessageBox.Show("Articulo eliminado");                    
+            }
+            else
+            {
+                MessageBox.Show("No se elmino el articulo");
+            }
+            load();
+            hideColums();
+        }
+
+        private bool validateFilter()
+        {
+            if (cbElemento.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione el Elemento para filtar");
+                return true;
+            }
+            if (cbTipo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione el tipo de criterio para filtrar");
+                return true;
+            }
+            if (cbElemento.SelectedItem.ToString() == "Precio")
+            {
+                if (!(justDecimal(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Solo puedes ingresar numeros cuando el elemto a filtrar es el precio");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private bool justDecimal(string text) 
+        {
+            decimal price;
+            if (decimal.TryParse(text, out price))
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvArticle = new System.Windows.Forms.DataGridView();
             this.lblElemento = new System.Windows.Forms.Label();
             this.cbElemento = new System.Windows.Forms.ComboBox();
             this.cbTipo = new System.Windows.Forms.ComboBox();
@@ -43,21 +42,9 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModifcar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.dgvArticle = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticle)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvArticle
-            // 
-            this.dgvArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvArticle.Location = new System.Drawing.Point(37, 86);
-            this.dgvArticle.Name = "dgvArticle";
-            this.dgvArticle.RowHeadersWidth = 51;
-            this.dgvArticle.RowTemplate.Height = 24;
-            this.dgvArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticle.Size = new System.Drawing.Size(737, 219);
-            this.dgvArticle.TabIndex = 0;
             // 
             // lblElemento
             // 
@@ -88,7 +75,7 @@
             this.cbTipo.Location = new System.Drawing.Point(976, 143);
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(114, 24);
-            this.cbTipo.TabIndex = 4;
+            this.cbTipo.TabIndex = 3;
             // 
             // lblTipo
             // 
@@ -116,7 +103,7 @@
             this.txtFiltroAvanzado.Location = new System.Drawing.Point(976, 187);
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(114, 22);
-            this.txtFiltroAvanzado.TabIndex = 6;
+            this.txtFiltroAvanzado.TabIndex = 4;
             // 
             // lblTituloFiltro
             // 
@@ -132,7 +119,7 @@
             this.btnFiltro.Location = new System.Drawing.Point(914, 233);
             this.btnFiltro.Name = "btnFiltro";
             this.btnFiltro.Size = new System.Drawing.Size(122, 36);
-            this.btnFiltro.TabIndex = 8;
+            this.btnFiltro.TabIndex = 5;
             this.btnFiltro.Text = "Filtro Avanzado";
             this.btnFiltro.UseVisualStyleBackColor = true;
             this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
@@ -142,7 +129,7 @@
             this.txtFiltroRapido.Location = new System.Drawing.Point(37, 43);
             this.txtFiltroRapido.Name = "txtFiltroRapido";
             this.txtFiltroRapido.Size = new System.Drawing.Size(166, 22);
-            this.txtFiltroRapido.TabIndex = 9;
+            this.txtFiltroRapido.TabIndex = 1;
             this.txtFiltroRapido.TextChanged += new System.EventHandler(this.txtFiltroRapido_TextChanged);
             // 
             // lblFiltroRapido
@@ -159,7 +146,7 @@
             this.btnDetalle.Location = new System.Drawing.Point(37, 315);
             this.btnDetalle.Name = "btnDetalle";
             this.btnDetalle.Size = new System.Drawing.Size(97, 32);
-            this.btnDetalle.TabIndex = 11;
+            this.btnDetalle.TabIndex = 6;
             this.btnDetalle.Text = "Ver detalle";
             this.btnDetalle.UseVisualStyleBackColor = true;
             this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
@@ -169,7 +156,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(140, 315);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(127, 32);
-            this.btnAgregar.TabIndex = 12;
+            this.btnAgregar.TabIndex = 7;
             this.btnAgregar.Text = "Agregar articulo";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -179,7 +166,7 @@
             this.btnModifcar.Location = new System.Drawing.Point(273, 315);
             this.btnModifcar.Name = "btnModifcar";
             this.btnModifcar.Size = new System.Drawing.Size(130, 32);
-            this.btnModifcar.TabIndex = 13;
+            this.btnModifcar.TabIndex = 8;
             this.btnModifcar.Text = "Modificar articulo";
             this.btnModifcar.UseVisualStyleBackColor = true;
             this.btnModifcar.Click += new System.EventHandler(this.btnModifcar_Click);
@@ -189,15 +176,31 @@
             this.btnEliminar.Location = new System.Drawing.Point(409, 315);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(118, 32);
-            this.btnEliminar.TabIndex = 14;
+            this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar articulo";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // dgvArticle
+            // 
+            this.dgvArticle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvArticle.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvArticle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticle.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvArticle.Location = new System.Drawing.Point(37, 81);
+            this.dgvArticle.Name = "dgvArticle";
+            this.dgvArticle.RowHeadersWidth = 51;
+            this.dgvArticle.RowTemplate.Height = 24;
+            this.dgvArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArticle.Size = new System.Drawing.Size(750, 219);
+            this.dgvArticle.TabIndex = 0;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1102, 442);
+            this.Controls.Add(this.dgvArticle);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModifcar);
             this.Controls.Add(this.btnAgregar);
@@ -212,7 +215,6 @@
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.cbElemento);
             this.Controls.Add(this.lblElemento);
-            this.Controls.Add(this.dgvArticle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -227,8 +229,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvArticle;
         private System.Windows.Forms.Label lblElemento;
         private System.Windows.Forms.ComboBox cbElemento;
         private System.Windows.Forms.ComboBox cbTipo;
@@ -243,6 +243,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModifcar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.DataGridView dgvArticle;
     }
 }
 

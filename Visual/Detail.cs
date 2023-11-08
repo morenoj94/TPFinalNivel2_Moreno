@@ -18,7 +18,7 @@ namespace Visual
         public Detail()
         {
             InitializeComponent();
-            Text = "Agregar Articulo";
+            Text = "Agregar Articulo";            
         }
         public Detail(Article article) 
         {
@@ -41,14 +41,21 @@ namespace Visual
                 cbCategoria.ValueMember = "Id";
                 cbCategoria.DisplayMember = "Description";
 
-                if (!(article == null))
+                if (article != null)
                 {
                     txtCodigo.Text = article.Code;
                     txtNombre.Text = article.Name;
                     txtDescripcion.Text = article.Desciption;
+                    txtUrlImagen.Text = article.imageUrl;
+                    loadPicture(article.imageUrl);
                     cbMarca.SelectedValue = article.articleBrand.Id;
                     cbCategoria.SelectedValue = article.articleCategory.Id;
                     txtPrecio.Text = article.Price.ToString();
+                }
+                else
+                {
+                    cbMarca.SelectedIndex = -1;
+                    cbCategoria.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
@@ -73,8 +80,6 @@ namespace Visual
             article.Desciption = txtDescripcion.Text;
             article.articleBrand = (Brand)cbMarca.SelectedItem;
             article.articleCategory = (Category)cbCategoria.SelectedItem;
-            //article.articleBrand.Description = txtMarca.Text;
-            //article.articleCategory.Description = txtCategoria.Text;
             article.imageUrl = txtUrlImagen.Text;
             article.Price = decimal.Parse(txtPrecio.Text);
 
@@ -89,6 +94,28 @@ namespace Visual
                 business.addArticle(article);
                 MessageBox.Show("Agregado exitosamente");
             }
+            Close();
+        }
+        private void loadPicture(string picture) 
+        {
+            try
+            {
+                pbArticulo.Load(picture);
+            }
+            catch (Exception ex)
+            {
+
+                pbArticulo.Load("https://media.prodalam.cl/default/default.png");
+            }
+        }
+
+        private void txtUrlImagen_Leave(object sender, EventArgs e)
+        {
+            loadPicture(txtUrlImagen.Text);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
             Close();
         }
     }
