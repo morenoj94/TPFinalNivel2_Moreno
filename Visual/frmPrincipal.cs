@@ -114,12 +114,14 @@ namespace Visual
         private void btnDetalle_Click(object sender, EventArgs e)
         {
             Article selected;
+            if (validateButtons()) { return;}
             selected = (Article)dgvArticle.CurrentRow.DataBoundItem;
             Detail articleDetail = new Detail(selected);
             articleDetail.ShowDialog();
             load();
             
         }
+
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -138,6 +140,7 @@ namespace Visual
         {
             BusinessArticle business = new BusinessArticle();
             Article seleted;
+            if (validateButtons()) { return; }
             seleted = (Article)dgvArticle.CurrentRow.DataBoundItem;
             DialogResult resultado = MessageBox.Show("¿Seguro que quieres borrar este elemento? \n    Al borrarlo ya no podras acceder a el", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (resultado == DialogResult.Yes)
@@ -167,7 +170,7 @@ namespace Visual
             }
             if (cbElemento.SelectedItem.ToString() == "Precio")
             {
-                if (!(justDecimal(txtFiltroAvanzado.Text)))
+                if (!(justDecimal(txtFiltroAvanzado.Text)) || string.IsNullOrEmpty(txtFiltroAvanzado.Text))
                 {
                     MessageBox.Show("Solo puedes ingresar numeros cuando el elemto a filtrar es el precio");
                     return true;
@@ -188,5 +191,21 @@ namespace Visual
                 return false;
             }
         }
+        private bool validateButtons() 
+        {
+            if (dgvArticle.CurrentRow == null)
+            {
+                MessageBox.Show("Por favor selecciona un articulo");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        
+
+        
     }
 }
