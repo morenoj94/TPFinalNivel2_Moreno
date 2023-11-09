@@ -45,6 +45,8 @@
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAgregarMarca = new System.Windows.Forms.Button();
+            this.btnAgregarCategoria = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,7 +152,7 @@
             // 
             // pbArticulo
             // 
-            this.pbArticulo.Location = new System.Drawing.Point(329, 37);
+            this.pbArticulo.Location = new System.Drawing.Point(358, 37);
             this.pbArticulo.Name = "pbArticulo";
             this.pbArticulo.Size = new System.Drawing.Size(286, 237);
             this.pbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,11 +199,33 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnAgregarMarca
+            // 
+            this.btnAgregarMarca.Location = new System.Drawing.Point(292, 147);
+            this.btnAgregarMarca.Name = "btnAgregarMarca";
+            this.btnAgregarMarca.Size = new System.Drawing.Size(34, 26);
+            this.btnAgregarMarca.TabIndex = 16;
+            this.btnAgregarMarca.Text = "+";
+            this.btnAgregarMarca.UseVisualStyleBackColor = true;
+            this.btnAgregarMarca.Click += new System.EventHandler(this.btnAgregarMarca_Click);
+            // 
+            // btnAgregarCategoria
+            // 
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(292, 175);
+            this.btnAgregarCategoria.Name = "btnAgregarCategoria";
+            this.btnAgregarCategoria.Size = new System.Drawing.Size(34, 26);
+            this.btnAgregarCategoria.TabIndex = 17;
+            this.btnAgregarCategoria.Text = "+";
+            this.btnAgregarCategoria.UseVisualStyleBackColor = true;
+            this.btnAgregarCategoria.Click += new System.EventHandler(this.btnAgregarCategoria_Click);
+            // 
             // Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 349);
+            this.Controls.Add(this.btnAgregarCategoria);
+            this.Controls.Add(this.btnAgregarMarca);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.cbMarca);
@@ -250,5 +274,7 @@
         private System.Windows.Forms.ComboBox cbMarca;
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAgregarMarca;
+        private System.Windows.Forms.Button btnAgregarCategoria;
     }
 }

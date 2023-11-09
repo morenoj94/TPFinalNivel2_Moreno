@@ -9,6 +9,25 @@ namespace Business
 {
     public class BusinessBrand
     {
+        public void addBrand(string newBrand)
+        {
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setQuery($"insert into MARCAS (Descripcion) values ('{newBrand}')");
+                data.executeAction();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.closeConnection();
+            }
+        }
+
         public List<Brand> listar() 
         {
             List<Brand> brandList = new List<Brand>();

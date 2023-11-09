@@ -156,6 +156,9 @@ namespace Visual
             hideColums();
         }
 
+
+
+        //Inician las validaciones
         private bool validateFilter()
         {
             if (cbElemento.SelectedIndex < 0)
