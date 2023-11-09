@@ -142,8 +142,7 @@ namespace Visual
                 {
                     MessageBox.Show("Debes seleccionar un elemento de la lista o agregarlo con el boton \"+\"");
                     return true;
-                }
-            
+                }            
             if (!(justDecimal(txtPrecio.Text)))
             {
                 MessageBox.Show("Solo puedes ingresar numeros en la casilla de precio");

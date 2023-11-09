@@ -104,6 +104,7 @@
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(114, 22);
             this.txtFiltroAvanzado.TabIndex = 4;
+            this.txtFiltroAvanzado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFiltroAvanzado_KeyPress);
             // 
             // lblTituloFiltro
             // 
@@ -194,6 +195,7 @@
             this.dgvArticle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticle.Size = new System.Drawing.Size(750, 219);
             this.dgvArticle.TabIndex = 0;
+            this.dgvArticle.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticle_CellDoubleClick);
             // 
             // frmPrincipal
             // 

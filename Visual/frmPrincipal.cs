@@ -156,6 +156,14 @@ namespace Visual
             hideColums();
         }
 
+        private void txtFiltroAvanzado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnFiltro_Click(sender, e);
+            }
+        }
 
 
         //Inician las validaciones
@@ -207,8 +215,10 @@ namespace Visual
             }
 
         }
-        
 
-        
+        private void dgvArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnDetalle_Click(sender, e);
+        }
     }
 }
