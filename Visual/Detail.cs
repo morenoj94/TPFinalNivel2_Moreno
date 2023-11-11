@@ -30,6 +30,7 @@ namespace Visual
 
         private void Detail_Load(object sender, EventArgs e)
         {
+            Style();
             BusinessBrand brand = new BusinessBrand();
             BusinessCategory category = new BusinessCategory();
             try
@@ -61,6 +62,20 @@ namespace Visual
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        private void Style()
+        {
+            BackColor = Color.FromArgb(208, 212, 211);
+            
+            foreach (Control c in this.Controls)
+            {
+                if (c is Button)
+                {
+                    c.BackColor = Color.FromArgb(8, 39, 70);
+                    c.ForeColor = BackColor;
+                }
             }
         }
 

@@ -21,6 +21,7 @@ namespace Visual
         }
         private void load() 
         {
+            Style();
             BusinessArticle business = new BusinessArticle();
             try
             {
@@ -33,6 +34,22 @@ namespace Visual
             }
             dgvArticle.DataSource = articlesList; 
             hideColums();
+        }
+
+        private void Style()
+        {
+            BackColor = Color.FromArgb(208, 212, 211);
+            dgvArticle.BackgroundColor = BackColor;
+            dgvArticle.RowHeadersVisible = false;
+            dgvArticle.CellFormatting += dgvArticle_CellFormatting;
+            foreach (Control c in this.Controls)
+            {
+                if (c is Button)
+                {
+                    c.BackColor = Color.FromArgb(8, 39, 70);
+                    c.ForeColor = BackColor;
+                }
+            }
         }
 
         private void hideColums()
@@ -165,6 +182,10 @@ namespace Visual
             }
         }
 
+        private void dgvArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnDetalle_Click(sender, e);
+        }
 
         //Inician las validaciones
         private bool validateFilter()
@@ -216,9 +237,15 @@ namespace Visual
 
         }
 
-        private void dgvArticle_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvArticle_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            btnDetalle_Click(sender, e);
+            if (e.ColumnIndex == dgvArticle.Columns["Price"].Index && e.Value != null)
+            {
+                // Limitar la cantidad de decimales a dos
+                double valor = Convert.ToDouble(e.Value);
+                e.Value = valor.ToString("0.00");
+                e.FormattingApplied = true;
+            }
         }
     }
 }
